@@ -1,0 +1,38 @@
+SELECT * FROM cleaned_dataset;
+
+-- 1.View Dataset
+SELECT * FROM cleaned_dataset LIMIT 10;
+
+-- 2.Total Number of Orders
+SELECT COUNT(*) AS total_orders FROM cleaned_dataset;
+
+-- 3.Total Revenue Generated
+SELECT SUM(TotalPrice) AS total_revenue FROM cleaned_dataset;
+
+-- 4.Average Order Value
+SELECT AVG(TotalPrice) AS average_order_value FROM cleaned_dataset;
+
+-- 5.Top Selling Products
+SELECT Product,SUM(Quantity) AS total_quantity_sold FROM cleaned_dataset GROUP BY Product ORDER BY total_quantity_sold DESC;
+
+-- 6.Revenue by Product
+SELECT Product,SUM(TotalPrice) AS revenue FROM cleaned_dataset GROUP BY Product ORDER BY revenue DESC;
+
+-- 7.Orders by Payment Method
+SELECT PaymentMethod,COUNT(*) AS total_orders FROM cleaned_dataset GROUP BY PaymentMethod ORDER BY total_orders DESC;
+
+-- 8.Order Status Analysis
+SELECT OrderStatus,COUNT(*) AS total_orders FROM cleaned_dataset GROUP BY OrderStatus ORDER BY total_orders DESC;
+
+-- 9.Highest Value Orders
+SELECT OrderID,Product,TotalPrice FROM cleaned_dataset ORDER BY TotalPrice DESC LIMIT 10;
+
+-- 10.Referral Source Performance
+SELECT ReferralSource,COUNT(*) AS total_orders,SUM(TotalPrice) AS total_revenue FROM cleaned_dataset GROUP BY ReferralSource ORDER BY total_revenue DESC;
+
+-- 11.Coupon Usage Analysis
+SELECT CouponCode,COUNT(*) AS usage_count FROM cleaned_dataset GROUP BY CouponCode ORDER BY usage_count DESC;
+
+-- 12.Average Items Per Cart
+SELECT AVG(ItemsInCart) AS avg_items_per_cart FROM cleaned_dataset;
+
